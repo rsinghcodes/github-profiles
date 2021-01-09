@@ -1,24 +1,57 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Card from "./Components/Card";
+import axios from "axios";
+import Search from "./Components/Search";
+import "./App.css";
 
 function App() {
+  const APIURL = "https://api.github.com/users/";
+
+  const [isUserFound, setisUserFound] = useState(false);
+  const [person, setPerson] = useState([]);
+  const [repos, setRepos] = useState([]);
+  const [username, setUsername] = useState("");
+
+  async function getUser(username) {
+    try {
+      const { data } = await axios(APIURL + username);
+      // console.log(data);
+      setPerson(data);
+      setisUserFound(true);
+    } catch (err) {
+      console.log(err);
+      setisUserFound(false);
+    }
+  }
+
+  async function getRepos(username) {
+    try {
+      const { data } = await axios(APIURL + username + "/repos?sort=created");
+      setRepos(data);
+      setisUserFound(true);
+    } catch (err) {
+      console.log(err);
+      setisUserFound(false);
+    }
+  }
+
+  const inputEvent = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    getUser(username);
+    getRepos(username);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Search inputEvent={inputEvent} handleSubmit={handleSubmit} />
+      <main id="main">
+        {isUserFound ? <Card person={person} repos={repos} /> : ""}
+      </main>
+    </>
   );
 }
 
