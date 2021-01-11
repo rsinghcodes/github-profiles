@@ -4,9 +4,8 @@
 
 To run this project, install it locally using npm:
 
-Install the dependencies and devDependencies and start the server.
-
 ```sh
+$ git clone https://github.com/raghvendrasingh07/github-profiles-using-react-js.git
 $ cd github-profiles-using-reactjs
 $ npm install
 $ npm start
