@@ -1,4 +1,4 @@
-# Github profiles using react js
+# Github profiles using ReactJs
 
 ### Sample Image
 
@@ -14,26 +14,27 @@
 - Implemented the **AXIOS** that retrieves users data from the **Github users API.**
 - Displays **user name, user bio, number of following, number of followers, number of repositories, and name of up to 5 repositories** of the user.
 
-### Installation
+### Installation & setup
 
 To run this project, install it locally using npm:
 
-```sh
-
-$ git clone https://github.com/rsinghcodes/github-profiles.git
-
-$ cd github-profiles
-
-$ npm install
-
-$ npm start
-
+```
+git clone https://github.com/rsinghcodes/github-profiles.git
+```
+```
+cd github-profiles
+```
+```
+npm install
+```
+```
+npm start
 ```
 
 For production environments...
 
-```sh
-$ npm run build
+```
+npm run build
 ```
 
 **Happy Yeah!**
